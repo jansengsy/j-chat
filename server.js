@@ -28,10 +28,10 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 
-  socket.onAny((eventName, ...args) => {
-    console.log(`Catch all event name: ${eventName}`);
-    console.log(`Catch all event arguments: ${eventName}`);
-  });
+  // socket.onAny((eventName, ...args) => {
+  //   console.log(`Catch all event name: ${eventName}`);
+  //   console.log(`Catch all event arguments: ${args}`);
+  // });
 });
 
 server.listen(port, () => {
