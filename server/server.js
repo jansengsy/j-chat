@@ -11,6 +11,9 @@ const jwt = require('jsonwebtoken');
 // Models
 const User = require('./model/user');
 
+// Middleware
+const auth = require('./middleware/auth');
+
 // Environment variables
 const { PORT, TOKEN_KEY } = process.env;
 
@@ -25,7 +28,6 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
-
 
 // Register
 app.post('/register', async (req, res) => {
@@ -98,8 +100,11 @@ app.post('/login', async (req, res) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = jwt.sign(
-        { user_id: user._id, email },
-        process.env.TOKEN_KEY,
+        { 
+          user_id: user._id, 
+          email 
+        },
+        TOKEN_KEY,
         {
           expiresIn: "2h",
         }
@@ -113,6 +118,10 @@ app.post('/login', async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+app.get('/welcome', auth, (req, res) => {
+  res.send(`Welcome, ${req.user.username}`);
 });
 
 io.on('connection', (socket) => {
