@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 
-import FormError from "./FormError";
+import FormError from './FormError';
 
 export default function LoginForm() {
 
@@ -19,7 +19,7 @@ export default function LoginForm() {
       setError(false);
       const token = await login(formData);
       saveToken(token);
-      window.locatiom.replace(window.location.origin + '/');
+      window.location.replace(window.location.origin + '/');
     } catch (err) {
       handleErrors(err);
     }
@@ -28,38 +28,45 @@ export default function LoginForm() {
   const handleErrors = (error) => {
     setError(true);
     setErrorMessage(error.response.data)
-    console.log(error.response);
   }
 
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <label htmlFor='uname'>Username:</label>
-        <input
-          name='uname'
-          type='text'
-          value={formData.username}
-          onChange={e => setFormData(prevData => ({
-            ...prevData,
-            username: e.target.value,
-          }))}
-          placeholder='Enter your username...'
-        />
-        { error && <FormError error={errorMessage}/> }
-        <label htmlFor='password'>Password:</label>
-        <input
-          name='password'
-          type='password'
-          value={formData.password}
-          onChange={e => setFormData(prevData => ({
-            ...prevData,
-            password: e.target.value,
-          }))}
-          placeholder='Enter your password...'
-        />
-        { error && <FormError error={errorMessage}/> }
-        <button type='submit'>Login!</button>
+    <>
+      <form onSubmit={handleLogin} className='container'>
+        <div className='form-box'>
+          <div className='form-section'>
+            <label htmlFor='uname' className='form-label'>Username:</label>
+            <input
+              name='uname'
+              className='form-input'
+              type='text'
+              value={formData.username}
+              onChange={e => setFormData(prevData => ({
+                ...prevData,
+                username: e.target.value,
+              }))}
+            />
+            { error && <FormError error={errorMessage}/> }
+          </div>
+          <div className='form-section'>
+            <label htmlFor='password' className='form-label'>Password:</label>
+            <input
+              name='password'
+              className='form-input'
+              type='password'
+              value={formData.password}
+              onChange={e => setFormData(prevData => ({
+                ...prevData,
+                password: e.target.value,
+              }))}
+            />
+            { error && <FormError error={errorMessage}/> }
+          </div>
+          <div className='form-section'>
+            <button type='submit' className='form-button'>Login!</button>
+          </div>
+        </div>
       </form>
-    </div>
+    </>
   );
 }

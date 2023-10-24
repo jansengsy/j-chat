@@ -1,5 +1,5 @@
 export default function FormError({error}) {
   return (
-    <div>{error}</div>
+    <div className="form-error">{error}</div>
   );
 }
