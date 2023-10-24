@@ -5,8 +5,8 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="login-header">
-        <h1>Welcome!</h1>
-        <h2>Login to J-Chat</h2>
+        <h1>Welcome to J-Chat!</h1>
+        <h4>Login to your account</h4>
       </div>
       <LoginForm />
     </div>
