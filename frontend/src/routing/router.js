@@ -14,8 +14,8 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "/chat",
-        Component: <Chat />,
-      }
+        element: <Chat />,
+      },
     ]
   },
   {
