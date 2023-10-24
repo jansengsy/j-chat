@@ -5,11 +5,12 @@ import Chat from '../pages/Chat';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Error from '../pages/Error';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 const Router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <ProtectedRoute><Home /></ProtectedRoute>,
     errorElement: <Error />,
     children: [
       {
