@@ -27,8 +27,8 @@ code {
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: black;
-  opacity: 95%;
+  background-color: #38492d;
+  opacity: 70%;
   width: 300px;
 }
 
@@ -54,7 +54,8 @@ code {
 .form-button {
   padding: 9px 15px;
   background-color: white;
-  color: black;
+  color: white;
+  background-color: #7e9f65;
   border: none;
   cursor: pointer;
   font-size: large;
@@ -68,7 +69,7 @@ code {
 }
 
 .login-container {
-  background-image: url('/Users/kees/Documents/src/j-chat/frontend/public/images/login_background.jpg');
+  background-image: url('/Users/kees/Documents/src/j-chat/frontend/public/images/login_background_3.jpg');
   background-size: cover;
   background-position: center;
   padding: 0%;
@@ -84,7 +85,7 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 90px;
+  padding-bottom: 20px;
 }
 
 .login-header h1 {
@@ -93,4 +94,4 @@ code {
 
 .login-header h4 {
   margin: 0px 0px 10px 0px;
-}
+} 
