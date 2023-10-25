@@ -1,6 +1,9 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 
+import '../../styles/login.css';
+import '../../styles/form.css';
+
 import FormError from './FormError';
 
 export default function LoginForm() {
@@ -32,8 +35,8 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={handleLogin} className='container'>
-        <div className='form-box'>
+      <form className='container' onSubmit={handleLogin}>
+        <div className='login-box'>
           <div className='form-section'>
             <label htmlFor='uname' className='form-label'>Username:</label>
             <input
@@ -63,7 +66,7 @@ export default function LoginForm() {
             { error && <FormError error={errorMessage}/> }
           </div>
           <div className='form-section'>
-            <button type='submit' className='form-button'>Login!</button>
+            <button type='submit' className='login-button'>Login!</button>
           </div>
         </div>
       </form>
