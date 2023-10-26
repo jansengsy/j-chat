@@ -27,7 +27,7 @@ export default function Chat() {
             <MessageBar room={room}/>
           </div>
           :
-          <h1>You are not in a room yet! Click a room on the side to join :/)</h1>
+          <h1 className="no-room">You are not in a room yet! Click a room on the side to join :)</h1>
       }
         
       </div>

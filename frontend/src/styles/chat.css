@@ -6,7 +6,6 @@
 
 .message-container {
   color: white;
-  font-size: xx-large;
   overflow: auto;
 }
 
@@ -20,11 +19,21 @@
 
 .message-input {
   height: 25px;
+  padding: 5px;
   flex: 1;
 }
 
 .message-button {
   margin-left: auto;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  color: #aad28c;
+  background-color: #323232;
+  margin: 5px 0px;
+  padding: 5px 10px;
 }
 
 .no-room {

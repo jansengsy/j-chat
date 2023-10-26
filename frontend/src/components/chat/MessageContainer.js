@@ -3,7 +3,7 @@ export default function MessageContainer({messages}) {
     <div className='message-container'>
       <ul>
         {messages.map((message, index) => (
-          <li key={index}>{message}</li>
+          <li className='message' key={index}>{message}</li>
           ))}
       </ul>
     </div>
