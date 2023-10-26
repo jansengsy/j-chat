@@ -127,9 +127,14 @@ app.get('/welcome', auth, (req, res) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
+  socket.on('chat-to-room', (data) => {
+    io.to(data.room).emit('chat', data.message);
   });
+
+  socket.on('join-room', (room) => {
+    console.log(`Socket ${socket.id} joining ${room}`);
+    socket.join(room);
+ });
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
