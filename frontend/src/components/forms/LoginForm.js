@@ -21,7 +21,7 @@ export default function LoginForm() {
     try {
       setError(false);
       const token = await login(formData);
-      saveToken(token);
+      saveToken(token.token);
       window.location.replace(window.location.origin + '/');
     } catch (err) {
       handleErrors(err);
