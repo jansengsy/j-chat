@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { chatToRoom } from "../../socket";
+import { AuthContext } from "../../context/authContext";
 
 export default function MessageBar({room}) {
 
+  const { user } = useContext(AuthContext);
   const [inputValue, setInputValue] = useState('');
 
   const handleSendMessage = () => {
-    chatToRoom({ room: room, message: inputValue });
+    chatToRoom({ room: room, message: inputValue, user_id: user._id });
     setInputValue('');
   };
 

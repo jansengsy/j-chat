@@ -14,6 +14,9 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    socket.on('old-messages', (messages) => {
+      setMessages(messages);
+    });
     socket.on('chat', (message) => {
       setMessages(prevMessages => [...prevMessages, message]);
     });
