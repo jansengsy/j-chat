@@ -3,7 +3,23 @@ import axios from 'axios';
 
 export default function useAuth() {
 
-  const [user, setUser] = useState(null);
+  const getUser = () => {
+    const userString = localStorage.getItem('user');
+    const user = JSON.parse(userString);
+    return user;
+  }
+
+  const [user, setUser] = useState(getUser());
+
+  const saveUser = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    setUser(user);
+  }
+
+  const deleteUser = (key) => {
+    localStorage.removeItem(key);
+    setUser(null);
+  }
 
   const login = async (user) => {
     const url = 'http://localhost:3000/login';
@@ -15,7 +31,7 @@ export default function useAuth() {
     });
 
     const { _id, username } = res.data;
-    setUser({
+    saveUser({
       _id,
       username,
     });
@@ -37,6 +53,8 @@ export default function useAuth() {
 
   return {
     user,
+    getUser,
+    deleteUser,
     login,
     register,
   }

@@ -7,11 +7,12 @@ import '../../styles/nav.css'
 
 export default function Nav() {
 
-  const { deleteToken } = useContext(AuthContext);
+  const { deleteToken, deleteUser } = useContext(AuthContext);
   const { room, setRoom } = useContext(RoomContext);
 
   const handleLogout = (e) => {
     e.preventDefault();
+    deleteUser('user');
     deleteToken('token');
   }
 
