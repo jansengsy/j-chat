@@ -132,7 +132,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('join-room', (room) => {
-    console.log(`Socket ${socket.id} joining ${room}`);
     socket.join(room);
  });
 
