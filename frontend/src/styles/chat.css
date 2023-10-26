@@ -1,0 +1,32 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.message-container {
+  color: white;
+  font-size: xx-large;
+  overflow: auto;
+}
+
+.message-bar {
+  display: flex;
+  gap: 5px;
+  margin-top: auto;
+  padding: 10px;
+  background-color: #2b2b2d;
+}
+
+.message-input {
+  height: 25px;
+  flex: 1;
+}
+
+.message-button {
+  margin-left: auto;
+}
+
+.no-room {
+  color: white;
+}
