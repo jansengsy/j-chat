@@ -27,13 +27,13 @@ ul {
   height: 100%;
 }
 
-li {
+.nav-item {
   padding: 10px;
   cursor: pointer;
   color: #aad28c;
 }
 
-li:hover {
+.nav-item:hover {
   background-color: #2b2b2d;
 }
 

@@ -28,9 +28,9 @@ export default function Nav() {
       </div>
       <div className="menu">
         <ul>
-          <li onClick={() => handleJoinRoom(1)}>Room 1</li>
-          <li onClick={() => handleJoinRoom(2)}>Room 2</li>
-          <li onClick={() => handleJoinRoom(3)}>Room 3</li>
+          <li className='nav-item' onClick={() => handleJoinRoom(1)}>Room 1</li>
+          <li className='nav-item' onClick={() => handleJoinRoom(2)}>Room 2</li>
+          <li className='nav-item' onClick={() => handleJoinRoom(3)}>Room 3</li>
         </ul>
       </div>
       <button onClick={handleLogout} className='logout-button'>Logout</button>
