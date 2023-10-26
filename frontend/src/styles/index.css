@@ -17,7 +17,7 @@ code {
   background-color: #1e1e1e;
   padding: 5px;
   margin-left: 250px;
-  width: 100%;
+  flex: 1;
   height: 100%;
 }
 
