@@ -1,7 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 import { AuthContext } from "../context/authContext";
+import { RoomContextProvider } from "../context/roomContext";
+
+import socket from '../socket';
 
 import Nav from "../components/nav/Nav";
 
@@ -9,19 +12,16 @@ export default function Home() {
 
   const { deleteToken } = useContext(AuthContext);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    deleteToken('token');
-  }
+  useEffect(() => {
+    socket.connect();
+  }, []);
 
   return (
     <>
-      <Nav />
-      <div className='page-container'>
-        <h1>Home!</h1>
-        <button onClick={handleLogout}>Logout!</button>
+      <RoomContextProvider>
+        <Nav />
         <Outlet />
-      </div>
+      </RoomContextProvider>
     </>
   )
 }
