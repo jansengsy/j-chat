@@ -6,7 +6,7 @@ export default function MessageBar({room}) {
   const [inputValue, setInputValue] = useState('');
 
   const handleSendMessage = () => {
-    chatToRoom({ room: room, message: inputValue }); // Assuming this is how you send a message via socket.io
+    chatToRoom({ room: room, message: inputValue });
     setInputValue('');
   };
 
