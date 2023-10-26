@@ -8,7 +8,7 @@ export const AuthContext = createContext(null);
 
 export const AuthContextProvider = ({children}) => {
   const { token, getToken, saveToken, deleteToken } = useToken();
-  const { login, register } = useAuth();
+  const { user, login, register } = useAuth();
 
   return(
     <AuthContext.Provider
@@ -17,6 +17,7 @@ export const AuthContextProvider = ({children}) => {
         getToken,
         saveToken,
         deleteToken,
+        user,
         login,
         register,
       }}
