@@ -9,7 +9,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // Models
-const User = require('./model/user');
+const User = require('./models/user');
+const Message = require('./models/message');
 
 // Middleware
 const auth = require('./middleware/auth');
@@ -124,15 +125,31 @@ app.get('/welcome', auth, (req, res) => {
   res.send(`Welcome, ${req.user.username}`);
 });
 
+app.get('/messages/:room', auth, async (req, res) => {
+  const room = req.params.room;
+  const messages = await Message.find({ room });
+  res.json(messages);
+});
+
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('chat-to-room', (data) => {
-    io.to(data.room).emit('chat', data.message);
+  socket.on('chat-to-room', async(data) => {
+
+    // Save message to db
+    const { room, message, user_id } = data;
+    await Message.create({ room, content: message, user_id });
+    const oldMessages = await Message.find({ room });
+
+    io.to(room).emit('old-messages', oldMessages);
   });
 
-  socket.on('join-room', (room) => {
+  socket.on('join-room', async (room) => {
     socket.join(room);
+
+    const oldMessages = await Message.find({ room });
+
+    socket.emit('old-messages', oldMessages);
  });
 
   socket.on('disconnect', () => {
