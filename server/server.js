@@ -146,9 +146,10 @@ io.on('connection', (socket) => {
   socket.on('join-room', async (room) => {
     socket.join(room);
 
-    const oldMessages = await Message.find({ room });
+    const messagesWithFormattedTimestamps = await Message.getMessagesWithFormattedTimestamps(room);
+    const populatedMessages = await Message.populate(messagesWithFormattedTimestamps, { path: 'user_id', select: 'username' });
 
-    socket.emit('old-messages', oldMessages);
+    socket.emit('old-messages', populatedMessages);
  });
 
   socket.on('disconnect', () => {
