@@ -18,7 +18,7 @@ export default function Chat() {
     socket.on('old-messages', (messages) => {
       setMessages(messages);
     });
-    socket.on('chat', (message) => {
+    socket.on('new-message', (message) => {
       setMessages(prevMessages => [...prevMessages, message]);
     });
   }, []);
