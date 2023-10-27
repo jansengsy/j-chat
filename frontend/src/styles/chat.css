@@ -52,7 +52,15 @@
 }
 
 .message-button {
+  background-color: #4a4a4a;
+  color: #aad28c;
+  border: none;
   margin-left: auto;
+  font-weight: 600;
+}
+
+.message-button:hover {
+  background-color: #636363;
 }
 
 .message-list {

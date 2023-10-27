@@ -30,8 +30,9 @@ export default function MessageBar({room}) {
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        onFocus={() => setError('')}
         placeholder={error}
-        />
+      />
       <button
         className="message-button"
         onClick={handleSendMessage}
