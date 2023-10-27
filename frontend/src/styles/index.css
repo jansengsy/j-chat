@@ -19,8 +19,12 @@ code {
   height: 100%;
   box-sizing: border-box;
   margin-left: 250px;
-  padding: 5px;
+  padding: 5px 15px;
   background-color: #1e1e1e;
+  background-image: url('/Users/kees/Documents/src/j-chat/frontend/public/images/chat_background_opacity.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center
 }
 
 .container {

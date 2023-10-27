@@ -25,7 +25,7 @@ export default function Chat() {
 
   return (
     <div className="page-container">
-      { room ? 
+      { room ?
           <div className="chat">
             <MessageContainer messages={messages} />
             <MessageBar room={room}/>
