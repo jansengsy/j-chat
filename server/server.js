@@ -136,7 +136,6 @@ io.on('connection', (socket) => {
 
   socket.on('chat-to-room', async(data) => {
 
-    // Save message to db
     const { room, message, user_id } = data;
     const newMessage = await Message.create({ room, content: message, user_id });
 
@@ -146,10 +145,9 @@ io.on('connection', (socket) => {
   socket.on('join-room', async (room) => {
     socket.join(room);
 
-    const messagesWithFormattedTimestamps = await Message.getMessagesWithFormattedTimestamps(room);
-    const populatedMessages = await Message.populate(messagesWithFormattedTimestamps, { path: 'user_id', select: 'username' });
+    const oldMessages = await Message.find({ room }).populate('user_id', 'username');
 
-    socket.emit('old-messages', populatedMessages);
+    socket.emit('old-messages', oldMessages);
  });
 
   socket.on('disconnect', () => {

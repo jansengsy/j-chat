@@ -19,7 +19,7 @@ export default function MessageContainer({messages}) {
       <ul className='message-list'>
         {messages.map((message, index) => (
           <li className='message' key={index}>
-            {`${message.user_id} wrote: `} <strong>{`${message.content} `}</strong>, {`at: ${message.timestamp}`}
+            {`${message.user_id.username} wrote: `} <strong>{`${message.content} `}</strong>, {`at: ${new Date(message.timestamp).toLocaleString()}`}
           </li>
           ))}
       </ul>
