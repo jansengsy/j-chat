@@ -137,6 +137,9 @@ io.on('connection', (socket) => {
   socket.on('chat-to-room', async(data) => {
 
     const { room, message, user_id } = data;
+    if (message === '') {
+      return;
+    }
     const newRawMessage = await Message.create({ room, content: message, user_id });
     const newMessage = await newRawMessage.populate('user_id', 'username');
 
