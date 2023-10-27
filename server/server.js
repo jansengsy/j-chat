@@ -148,7 +148,6 @@ io.on('connection', (socket) => {
 
     const oldMessages = await Message.find({ room }).populate('user_id', 'username');
 
-    console.log(oldMessages);
     socket.emit('old-messages', oldMessages);
 
  });
