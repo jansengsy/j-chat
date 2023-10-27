@@ -137,7 +137,8 @@ io.on('connection', (socket) => {
   socket.on('chat-to-room', async(data) => {
 
     const { room, message, user_id } = data;
-    const newMessage = await Message.create({ room, content: message, user_id });
+    const newRawMessage = await Message.create({ room, content: message, user_id });
+    const newMessage = await newRawMessage.populate('user_id', 'username');
 
     io.to(room).emit('new-message', newMessage);
   });
@@ -147,7 +148,9 @@ io.on('connection', (socket) => {
 
     const oldMessages = await Message.find({ room }).populate('user_id', 'username');
 
+    console.log(oldMessages);
     socket.emit('old-messages', oldMessages);
+
  });
 
   socket.on('disconnect', () => {
