@@ -36,6 +36,28 @@
   padding: 5px 10px;
 }
 
-.no-room {
-  color: white;
+.no-room-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.no-room-header {
+  color: #6f8b5a;
+  font-size: large;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.no-room-content {
+  color: #6f8b5a;
+  font-size: small;
+  margin: 0px;
+}
+
+.no-room-icon {
+  color: #6f8b5a;
+  font-size: 100px;
 }

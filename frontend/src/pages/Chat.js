@@ -4,6 +4,7 @@ import { RoomContext } from "../context/roomContext";
 
 import MessageContainer from "../components/chat/MessageContainer";
 import MessageBar from "../components/chat/MessageBar";
+import NoRoomSelected from "../components/chat/NoRoomSelected";
 
 import "../styles/chat.css";
 
@@ -29,8 +30,7 @@ export default function Chat() {
             <MessageContainer messages={messages} />
             <MessageBar room={room}/>
           </div>
-          :
-          <h1 className="no-room">You are not in a room yet! Click a room on the side to join :)</h1>
+          : <NoRoomSelected />
       }
         
       </div>
