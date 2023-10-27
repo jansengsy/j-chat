@@ -138,10 +138,9 @@ io.on('connection', (socket) => {
 
     // Save message to db
     const { room, message, user_id } = data;
-    await Message.create({ room, content: message, user_id });
-    const oldMessages = await Message.find({ room });
+    const newMessage = await Message.create({ room, content: message, user_id });
 
-    io.to(room).emit('old-messages', oldMessages);
+    io.to(room).emit('new-message', newMessage);
   });
 
   socket.on('join-room', async (room) => {
