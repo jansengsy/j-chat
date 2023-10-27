@@ -7,7 +7,7 @@ import '../../styles/nav.css'
 
 export default function Nav() {
 
-  const { deleteToken, deleteUser } = useContext(AuthContext);
+  const { user, deleteToken, deleteUser } = useContext(AuthContext);
   const { room, setRoom } = useContext(RoomContext);
 
   const handleLogout = (e) => {
@@ -24,10 +24,10 @@ export default function Nav() {
   return (
     <div className="sidenav">
       <div className="header">
-        <h2>J-Chat</h2>
-        <h2>{`Current room: ${room}`}</h2>
+        <h2 className="nav-header">J-Chat</h2>
+        <p className="nav-welcome">{`Welcome, ${user.username}!`}</p>
       </div>
-      <div className="menu">
+      <div className="nav-menu">
         <ul>
           <li className='nav-item' onClick={() => handleJoinRoom(1)}>Room 1</li>
           <li className='nav-item' onClick={() => handleJoinRoom(2)}>Room 2</li>
