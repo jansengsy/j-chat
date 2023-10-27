@@ -1,4 +1,19 @@
+import { useEffect, useRef } from "react";
+
 export default function MessageContainer({messages}) {
+
+  const messageContainerRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollIntoView({ behavior: 'instant' });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className='message-container'>
       <ul className='message-list'>
@@ -8,6 +23,7 @@ export default function MessageContainer({messages}) {
           </li>
           ))}
       </ul>
+      <div ref={messageContainerRef}/>
     </div>
   );
 }
