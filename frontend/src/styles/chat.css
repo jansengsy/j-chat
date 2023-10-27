@@ -36,11 +36,38 @@
 
 .message {
   display: flex;
-  align-items: center;
-  color: #aad28c;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 75%;
   background-color: #323232;
-  margin: 5px 0px;
+  margin-top: 5px;
   padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.other-message {
+  margin-left: 0px;
+}
+
+.my-message {
+  margin-left: auto;
+  margin-top: 5px;
+}
+
+.message-user {
+  color: #aad28c;
+  font-size: x-small;
+  margin-right: 10px;
+}
+
+.message-content {
+  margin-top: 5px;
+}
+
+.message-timestamp {
+  color: #aad28c;
+  font-size: x-small;
+  margin-left: 25px;
 }
 
 .no-room-container {
