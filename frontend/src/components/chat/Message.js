@@ -10,8 +10,8 @@ export default function Message({message}) {
       <span className="message-user"><strong>{message.user_id.username}:</strong></span>
       <div className="message-content">
         <span>{message.content}</span>
-        <span className="message-timestamp">{new Date(message.timestamp).toLocaleString()}</span>
       </div>
+      <span className="message-timestamp">{new Date(message.timestamp).toLocaleString([], {hour: '2-digit', minute:'2-digit', hour12: false})}</span>
     </div>
   );
 }

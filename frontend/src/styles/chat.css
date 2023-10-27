@@ -76,6 +76,7 @@
   margin-top: 5px;
   padding: 5px 10px;
   border-radius: 10px;
+  font-size: small;
 }
 
 .other-message {
@@ -100,7 +101,8 @@
 .message-timestamp {
   color: #aad28c;
   font-size: x-small;
-  margin-left: 25px;
+  margin-left: auto;
+  margin-top: 2px;
 }
 
 .no-room-container {
