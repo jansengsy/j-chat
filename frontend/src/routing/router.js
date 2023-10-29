@@ -18,10 +18,6 @@ const Router = createBrowserRouter([
         path: "/",
         element: <Chat />,
       },
-      {
-        path: '/verify',
-        element: <Verify />
-      }
     ]
   },
   {
@@ -31,6 +27,10 @@ const Router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path: '/verify',
+    element: <Verify />
   }
 ]);
 
