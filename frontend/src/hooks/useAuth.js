@@ -56,7 +56,7 @@ export default function useAuth() {
 
     const emailUrl = 'http://localhost:3000/email/register';
 
-    await axios.post(emailUrl, {email, verification_token}, {
+    await axios.post(emailUrl, { verification_token, username, email}, {
       headers: {
           'Content-Type': 'application/json',
       },
