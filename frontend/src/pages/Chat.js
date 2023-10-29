@@ -11,7 +11,6 @@ import "../styles/chat.css";
 export default function Chat() {
 
   const { room } = useContext(RoomContext);
-
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {

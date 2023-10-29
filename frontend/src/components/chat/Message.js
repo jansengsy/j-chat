@@ -5,9 +5,12 @@ export default function Message({message}) {
 
   const {user} = useContext(AuthContext);
 
+  const username = (message.user_id && message.user_id.username) || 'unknown';
+  const messageid = (message.user_id && message.user_id._id) || undefined;
+
   return (
-    <div className={`message ${user._id === message.user_id._id ? 'my-message' : 'other-message'}`}>
-      <span className="message-user"><strong>{message.user_id.username}:</strong></span>
+    <div className={`message ${user._id === messageid ? 'my-message' : 'other-message'}`}>
+      <span className="message-user"><strong>{username}:</strong></span>
       <div className="message-content">
         <span>{message.content}</span>
       </div>
