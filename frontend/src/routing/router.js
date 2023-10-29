@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Error from '../pages/Error';
 import ProtectedRoute from './routes/ProtectedRoute';
+import Verify from '../pages/Verfiy';
 
 const Router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const Router = createBrowserRouter([
         path: "/",
         element: <Chat />,
       },
+      {
+        path: '/verify',
+        element: <Verify />
+      }
     ]
   },
   {

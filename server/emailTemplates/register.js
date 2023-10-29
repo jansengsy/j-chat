@@ -41,7 +41,7 @@ const generateRegisterEmailTemplate = (token, username, email) => {
                 Regards,<br/>
                 The J-Chat Team
             </p>
-            <a class="button" href="http://localhost:3000/verify?token=${token}&email=${email}">Verify my email!</a>
+            <a class="button" href="http://localhost:3001/verify?token=${token}&email=${email}">Verify my email!</a>
         </div>
     </body>
     </html>
