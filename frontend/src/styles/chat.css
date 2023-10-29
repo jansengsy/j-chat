@@ -114,19 +114,19 @@
 }
 
 .no-room-header {
-  color: #6f8b5a;
+  color: white;
   font-size: large;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .no-room-content {
-  color: #6f8b5a;
+  color: white;
   font-size: small;
   margin: 0px;
 }
 
 .no-room-icon {
-  color: #6f8b5a;
+  color: white;
   font-size: 100px;
 }
