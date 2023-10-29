@@ -34,7 +34,7 @@ app.use(express.json());
 app.post('/register', async (req, res) => {
   
   try {
-    const { first_name, last_name, username, email, password } = req.body;
+    const { username, email, password } = req.body;
     
     if (!(email && password && username && first_name && last_name)) {
       res.status(400).send('All input is required');
@@ -46,8 +46,6 @@ app.post('/register', async (req, res) => {
 
     try {
       const user = await User.create({
-        first_name,
-        last_name,
         username,
         email: email.toLowerCase(),
         password: encryptedPassword,
