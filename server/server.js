@@ -36,7 +36,7 @@ app.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
     
-    if (!(email && password && username && first_name && last_name)) {
+    if (!(email && password && username)) {
       res.status(400).send('All input is required');
       console.error('ERROR: All input is required');
       return;
@@ -66,7 +66,6 @@ app.post('/register', async (req, res) => {
       user.token = token;
       res.status(201).json(user);
     } catch (error) {
-
       if (error.message.includes('username_1')) {
         return res.status(409).send('Username already exists.');
       } else if (error.message.includes('email_1')) {
