@@ -37,8 +37,7 @@ app.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
     
     if (!(email && password && username)) {
-      res.status(400).send('All input is required');
-      console.error('ERROR: All input is required');
+      res.status(400).send('All input is required.');
       return;
     }
 

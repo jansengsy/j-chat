@@ -48,6 +48,12 @@ export default function useAuth() {
       },
     });
 
+    const { _id, username } = res.data;
+    saveUser({
+      _id,
+      username,
+    });
+
     return res.data;
   }
 
