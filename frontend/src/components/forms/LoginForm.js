@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
+import { Link } from "react-router-dom";
 
 import '../../styles/login.css';
 import '../../styles/form.css';
@@ -40,7 +41,7 @@ export default function LoginForm() {
           <div className='form-section'>
             <label htmlFor='uname' className='form-label'>Username:</label>
             <input
-              name='uname'
+              id='uname'
               className='form-input'
               type='text'
               value={formData.username}
@@ -54,7 +55,7 @@ export default function LoginForm() {
           <div className='form-section'>
             <label htmlFor='password' className='form-label'>Password:</label>
             <input
-              name='password'
+              id='password'
               className='form-input'
               type='password'
               value={formData.password}
@@ -65,8 +66,9 @@ export default function LoginForm() {
             />
             { error && <FormError error={errorMessage}/> }
           </div>
+          <Link className='register-link' to={'/register'}>Don't have an account? Register here</Link>
           <div className='form-section'>
-            <button type='submit' className='login-button'>Login!</button>
+            <button type='submit' className='login-button'>Login</button>
           </div>
         </div>
       </form>
