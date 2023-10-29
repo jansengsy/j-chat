@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./config/database').connect();
+const { send } = require('./config/nodemailer');
 
 const express = require('express');
 const cors = require('cors');
@@ -7,10 +8,14 @@ const { Server } = require('socket.io');
 const http = require('http');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 // Models
 const User = require('./models/user');
 const Message = require('./models/message');
+
+// Email templates
+const generateRegisterEmailTemplate = require('./emailTemplates/register');
 
 // Middleware
 const auth = require('./middleware/auth');
@@ -30,6 +35,46 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
+// Email
+app.post('/email/register', async (req, res) => {
+
+  const { verification_token, username, email } = req.body;
+
+  const from = 'jansen.chat.app@gmail.com';
+  const to = email;
+  const subject = 'Welcome to J-Chat!';
+
+  const html = generateRegisterEmailTemplate(verification_token, username, email);
+
+  try {
+    const data = { from, to, subject, html };
+    await send(data);
+    res.status(200).send('Email successfully sent');
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('Server error');
+  }
+});
+
+app.get('/email/verify', async (req, res) => {
+  const email = req.query.email;
+  const token = req.query.token;
+
+  try {
+    const filter = { email: email, verification_token: token };
+    const update = { verified: true };
+    let updatedUser = await User.findOneAndUpdate(filter, update, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).send('User not found');
+    }
+
+    res.status(200).send('Email verified successfully');
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
+
 // Register
 app.post('/register', async (req, res) => {
   
@@ -43,11 +88,14 @@ app.post('/register', async (req, res) => {
 
     encryptedPassword = await bcrypt.hash(password, 10);
 
+    const verification_token = crypto.randomBytes(20).toString('hex');
+
     try {
       const user = await User.create({
         username,
         email: email.toLowerCase(),
         password: encryptedPassword,
+        verification_token: verification_token,
       });
 
       const token = jwt.sign(

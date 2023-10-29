@@ -48,10 +48,18 @@ export default function useAuth() {
       },
     });
 
-    const { _id, username } = res.data;
+    const { _id, username, verification_token, email } = res.data;
     saveUser({
       _id,
       username,
+    });
+
+    const emailUrl = 'http://localhost:3000/email/register';
+
+    await axios.post(emailUrl, {email, verification_token}, {
+      headers: {
+          'Content-Type': 'application/json',
+      },
     });
 
     return res.data;
