@@ -30,7 +30,7 @@
   background-color: #7e9f65;
   border: none;
   cursor: pointer;
-  font-size: large;
+  font-size: medium;
   font-weight: 600;
 }
 
@@ -47,4 +47,13 @@
 
 .login-header h4 {
   margin: 0px 0px 10px 0px;
-} 
+}
+
+.register-link {
+  color: #aad28c;
+  text-align: center;
+}
+
+.register-link:hover {
+  color: white;
+}

@@ -7,7 +7,7 @@
 .form-label {
   align-self: flex-start;
   margin-bottom: 5px;
-  font-size: large;
+  font-size: medium;
   font-weight: 600;
 }
 
@@ -15,6 +15,10 @@
   width: 300px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+.form-input-error {
+  border: 1px solid red;
 }
 
 .form-error {
