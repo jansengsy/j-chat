@@ -14,11 +14,14 @@ code {
     monospace;
 }
 
+.home-container {
+  display: flex;
+}
+
 .page-container {
   flex: 1;
-  height: 100%;
+  height: calc(100vh - 61px);
   box-sizing: border-box;
-  margin-left: 300px;
   padding: 5px 15px;
   background-color: #1e1e1e;
   background-image: url('/Users/kees/Documents/src/j-chat/frontend/public/images/chat_background_opacity_2.png');

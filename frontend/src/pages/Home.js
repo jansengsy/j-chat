@@ -8,6 +8,7 @@ import socket from '../socket';
 
 import Nav from "../components/nav/Nav";
 import VerificationBanner from "../components/VerificationBanner";
+import PageHeader from "../components/PageHeader";
 
 export default function Home() {
 
@@ -21,8 +22,11 @@ export default function Home() {
     <>
       { user.verified === false ? <VerificationBanner /> : <></> }
       <RoomContextProvider>
-        <Nav />
-        <Outlet />
+        <PageHeader />
+        <div className="home-container">
+          <Nav />
+          <Outlet />
+        </div>
       </RoomContextProvider>
     </>
   )
