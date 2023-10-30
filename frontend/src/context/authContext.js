@@ -8,7 +8,7 @@ export const AuthContext = createContext(null);
 
 export const AuthContextProvider = ({children}) => {
   const { token, getToken, saveToken, deleteToken } = useToken();
-  const { user, getUser, deleteUser, login, register } = useAuth();
+  const { user, getUser, deleteUser, login, register, verifyUser } = useAuth();
 
   return(
     <AuthContext.Provider
@@ -22,6 +22,7 @@ export const AuthContextProvider = ({children}) => {
         deleteUser,
         login,
         register,
+        verifyUser,
       }}
     >
       {children}

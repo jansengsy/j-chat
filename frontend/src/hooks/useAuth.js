@@ -21,6 +21,12 @@ export default function useAuth() {
     setUser(null);
   }
 
+  const verifyUser = () => {
+    const user = getUser();
+    user.verified = true;
+    saveUser(user);
+  }
+
   const login = async (user) => {
     const url = 'http://localhost:3000/login';
 
