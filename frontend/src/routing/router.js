@@ -6,7 +6,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Error from '../pages/Error';
 import ProtectedRoute from './routes/ProtectedRoute';
-import Verify from '../pages/Verfiy';
+import Verify from '../pages/Verify';
 
 const Router = createBrowserRouter([
   {
