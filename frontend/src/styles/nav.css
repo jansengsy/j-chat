@@ -2,7 +2,7 @@
   background-color: #1e1e1e; /* set background color */
   color: #FFFFFF; /* set text color */
   height: 100vh;
-  width: 250px; /* set width */
+  width: 300px; /* set width */
   display: flex;
   flex-direction: column;
   border-right: 1px solid #323232;
@@ -35,9 +35,11 @@ ul {
   cursor: pointer;
   color: #aad28c;
   box-sizing: border-box;
-  border-top: 1px solid #323232;
-  border-bottom: 1px solid #323232;
   border-radius: 5px;
+}
+
+.selected-nav-item {
+  background-color: #323232;
 }
 
 .nav-item:hover {

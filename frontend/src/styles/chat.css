@@ -16,8 +16,8 @@
   flex-grow: 1 0;
   gap: 5px;
   margin-top: auto;
-  padding: 10px;
-  background-color: #2b2b2d;
+  padding: 10px 0px;
+  background-color: transparent;
 }
 
 .message-input {
