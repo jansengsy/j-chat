@@ -31,7 +31,6 @@ export default function Chat() {
           </div>
           : <NoRoomSelected />
       }
-        
-      </div>
+    </div>
   );
 }
