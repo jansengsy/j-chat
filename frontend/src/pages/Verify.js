@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Verify() {
 
-  const {verifyUser} = useContext(AuthContext);
+  const {token, user, verifyUser} = useContext(AuthContext);
 
   // eslint-disable-next-line no-unused-vars
   const [searchParams, nosetSearchParams] = useSearchParams();
@@ -19,16 +19,20 @@ export default function Verify() {
   }
   
   useEffect(() => {
+
+    if (user.verified) goHome();
+
     async function verifyEmail() {
-      const token = searchParams.get('token');
+      const verification_token = searchParams.get('token');
       const email = searchParams.get('email');
 
-      const url = `http://localhost:3000/email/verify?token=${token}&email=${email}`;
+      const url = `http://localhost:3000/email/verify?token=${verification_token}&email=${email}`;
 
       try {
         const res = await axios.get(url, {
           headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
           },
         });
         verifyUser();
@@ -36,7 +40,7 @@ export default function Verify() {
         setVerifiedMessage(res.data);
 
         setTimeout(() => {
-          goHome();
+          //goHome();
         }, 2000);
       } catch (err) {
         setError(true);
