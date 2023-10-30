@@ -36,10 +36,13 @@ export default function useAuth() {
       },
     });
 
-    const { _id, username } = res.data;
+    const { _id, username, email, verification_token, verified } = res.data;
     saveUser({
       _id,
       username,
+      email,
+      verification_token,
+      verified,
     });
 
     return res.data;
@@ -54,10 +57,13 @@ export default function useAuth() {
       },
     });
 
-    const { _id, username, verification_token, email } = res.data;
+    const { _id, username, verified, verification_token, email } = res.data;
     saveUser({
       _id,
       username,
+      email,
+      verification_token,
+      verified,
     });
 
     const emailUrl = 'http://localhost:3000/email/register';
@@ -77,5 +83,6 @@ export default function useAuth() {
     deleteUser,
     login,
     register,
+    verifyUser,
   }
 }
