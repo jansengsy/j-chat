@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import '../../styles/login.css';
 import '../../styles/form.css';
@@ -8,6 +9,10 @@ import '../../styles/form.css';
 import FormError from './FormError';
 
 export default function LoginForm() {
+
+  // Inside your Login component
+  const location = useLocation();
+  const { state } = location;
 
   const { login, saveToken } = useContext(AuthContext);
   const [error, setError] = useState(false);
@@ -23,10 +28,20 @@ export default function LoginForm() {
       setError(false);
       const token = await login(formData);
       saveToken(token.token);
-      window.location.replace(window.location.origin + '/');
+      const redirectPath = state && state.from ? state.from : '/';
+      const queryParameters = state && state.params ? contructQueryParams(state.params) : '';
+      window.location.replace(window.location.origin + redirectPath + queryParameters);
     } catch (err) {
       handleErrors(err);
     }
+  }
+
+  const contructQueryParams = (paramsObject) => {
+    const queryString = Object.keys(paramsObject)
+      .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(paramsObject[key])}`)
+      .join('&');
+
+    return `?${queryString}`;
   }
 
   const handleErrors = (error) => {

@@ -40,7 +40,7 @@ export default function Verify() {
         setVerifiedMessage(res.data);
 
         setTimeout(() => {
-          //goHome();
+          goHome();
         }, 2000);
       } catch (err) {
         setError(true);

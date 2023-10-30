@@ -30,7 +30,7 @@ const Router = createBrowserRouter([
   },
   {
     path: '/verify',
-    element: <Verify />
+    element: <ProtectedRoute><Verify /></ProtectedRoute>
   }
 ]);
 
