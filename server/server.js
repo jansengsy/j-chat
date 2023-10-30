@@ -35,6 +35,28 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
+app.post('/getUser', auth, async (req, res) => {
+
+  const _id = req.body._id;
+
+  try {
+    const response = await User.findOne({_id});
+
+    // pluck needed details
+    const user = {
+      _id: response._id,
+      username: response.username,
+      email: response.email,
+      verification_token: response.verification_token,
+      verified: response.verified,
+    }
+    return res.status(200).json(user);
+  } catch (err) {
+    console.log(err)
+    return res.status(500).send('Server error.');
+  }
+});
+
 // Email
 app.post('/email/register', async (req, res) => {
 
@@ -49,11 +71,30 @@ app.post('/email/register', async (req, res) => {
   try {
     const data = { from, to, subject, html };
     await send(data);
-    res.status(200).send('Email successfully sent');
+    return res.status(200).send('Email successfully sent');
   } catch (err) {
-    console.log(err)
-    res.status(500).send('Server error');
+    return res.status(500).send('Server error');
   }
+});
+
+app.post('/email/sendVerificationEmail', auth, async (req, res) => {
+
+  const { verification_token, username, email } = req.body;
+
+  const from = 'J-Chat';
+  const to = email;
+  const subject = 'Welcome to J-Chat!';
+
+  const html = generateRegisterEmailTemplate(verification_token, username, email);
+
+  try {
+    const data = { from, to, subject, html };
+    await send(data);
+    return res.status(200).send('Email successfully sent');
+  } catch (err) {
+    return res.status(500).send('Server error');
+  }
+
 });
 
 app.get('/email/verify', async (req, res) => {
