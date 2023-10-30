@@ -10,7 +10,6 @@ import FormError from './FormError';
 
 export default function LoginForm() {
 
-  // Inside your Login component
   const location = useLocation();
   const { state } = location;
 
@@ -84,6 +83,11 @@ export default function LoginForm() {
           <Link className='register-link' to={'/register'}>Don't have an account? Register here</Link>
           <div className='form-section'>
             <button type='submit' className='login-button'>Login</button>
+          </div>
+          <div className='forgotten-section'>
+            <Link className='register-link' to={'/forgotten-username'}>Forgotten username?</Link>
+            <hr className='forgotten-divider'/>
+            <Link className='register-link' to={'/forgotten-password'}>Forgotten password?</Link>
           </div>
         </div>
       </form>
