@@ -58,6 +58,26 @@ app.post('/getUser', auth, async (req, res) => {
 });
 
 // Email
+app.get('/email/forgottenPassword', (req, res) => {
+  
+});
+
+app.get('/email/forgottenUsername', async (req, res) => {
+  const { email } = req.body;
+  const from = 'jansen.chat.app@gmail.com';
+  const to = email;
+  const subject = 'J-Chat username reminder';
+  try {
+    const user = await User.findOne({ email });
+    const html = generateReminderTemplate(user.username);
+    const data = { from, to, subject, html };
+    await send(data);
+    return res.status(200).send('Username reminder email sent.');
+  } catch (err) {
+    return res.status(500).send('Server error');
+  }
+});
+
 app.post('/email/register', async (req, res) => {
 
   const { verification_token, username, email } = req.body;
