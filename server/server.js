@@ -97,7 +97,7 @@ app.post('/email/sendVerificationEmail', auth, async (req, res) => {
 
 });
 
-app.get('/email/verify', async (req, res) => {
+app.get('/email/verify', auth, async (req, res) => {
   const email = req.query.email;
   const token = req.query.token;
 
