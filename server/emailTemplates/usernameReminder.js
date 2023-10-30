@@ -1,4 +1,4 @@
-const generateUsernameReminderEmail = (token, username, email) => {
+const generateReminderTemplate = (username) => {
   return (`
     <!DOCTYPE html>
     <html>
@@ -34,7 +34,10 @@ const generateUsernameReminderEmail = (token, username, email) => {
     </head>
     <body>
         <div class="container">
-            <div class="header">Your J-Chat username is: ${username}</div>
+            <p>Hey,</p>
+            <p>Hope you're doing great! We just wanted to drop you a quick note to remind you of your username for J-Chat. It happens to the best of us — forgetting those tiny details in the whirlwind of the online world.</p> 
+            <p>Your username for <strong>J-Chat</strong> is: <strong>${username}</strong></p>
+            <p>Keep enjoying your time with us!</p>
             <a class="button" href="http://localhost:3001/login">Login!</a>
         </div>
     </body>
@@ -42,4 +45,4 @@ const generateUsernameReminderEmail = (token, username, email) => {
   `);
 }
 
-module.exports = generateUsernameReminderEmail;
+module.exports = generateReminderTemplate;

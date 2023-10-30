@@ -16,6 +16,7 @@ const Message = require('./models/message');
 
 // Email templates
 const generateRegisterEmailTemplate = require('./emailTemplates/register');
+const generateReminderTemplate = require('./emailTemplates/usernameReminder');
 
 // Middleware
 const auth = require('./middleware/auth');
@@ -62,13 +63,16 @@ app.get('/email/forgottenPassword', (req, res) => {
   
 });
 
-app.get('/email/forgottenUsername', async (req, res) => {
+app.post('/email/forgottenUsername', async (req, res) => {
   const { email } = req.body;
   const from = 'jansen.chat.app@gmail.com';
   const to = email;
   const subject = 'J-Chat username reminder';
   try {
     const user = await User.findOne({ email });
+    if (user === null) {
+      return res.status(500).send('User not found');
+    }
     const html = generateReminderTemplate(user.username);
     const data = { from, to, subject, html };
     await send(data);
