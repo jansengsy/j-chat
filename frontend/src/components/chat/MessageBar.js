@@ -8,7 +8,10 @@ export default function MessageBar({room}) {
   const [error, setError] = useState('');
   const [inputValue, setInputValue] = useState('');
 
-  const handleSendMessage = () => {
+  // 13 = enter key
+  const enter = (e) => { if(e.which === 13) handleSendMessage() };
+
+  const handleSendMessage = (e) => {
     setError('');
     if (inputValue === '') {
       setError('Messages can\'t be empty!');
@@ -21,6 +24,8 @@ export default function MessageBar({room}) {
     chatToRoom({ room: room, message: inputValue, user_id: user._id });
     setInputValue('');
   };
+
+  document.onkeyup = enter;
 
   return (
     <div className="message-bar">
