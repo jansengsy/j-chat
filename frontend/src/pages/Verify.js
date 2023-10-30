@@ -53,12 +53,12 @@ export default function Verify() {
   }, [searchParams]);
 
   return (
-    <div className='no-room-container'>
+    <div className='no-chat-container'>
       { error ? 
-          <FontAwesomeIcon className='no-room-icon' icon={'fa-solid fa-triangle-exclamation'} /> : 
-          <FontAwesomeIcon className='no-room-icon' icon={'fa-solid fa-square-check'} />
+          <FontAwesomeIcon className='no-chat-icon' icon={'fa-solid fa-triangle-exclamation'} /> : 
+          <FontAwesomeIcon className='no-chat-icon' icon={'fa-solid fa-square-check'} />
       }
-      <h1 className='no-room-header'>{verifiedMessage}!</h1>
+      <h1 className='no-chat-header'>{verifiedMessage}!</h1>
       <p className='white-text'>You will be returned the the application in a few seconds...</p>
     </div>
   );

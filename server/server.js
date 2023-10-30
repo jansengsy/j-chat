@@ -210,31 +210,32 @@ app.get('/welcome', auth, (req, res) => {
   res.send(`Welcome, ${req.user.username}`);
 });
 
-app.get('/messages/:room', auth, async (req, res) => {
-  const room = req.params.room;
-  const messages = await Message.find({ room });
+app.get('/messages/:chat', auth, async (req, res) => {
+  const chat = req.params.chat;
+  const messages = await Message.find({ chat });
   res.json(messages);
 });
 
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('chat-to-room', async(data) => {
+  socket.on('chat-to-chat', async(data) => {
 
-    const { room, message, user_id } = data;
+    const { chat, message, user_id } = data;
     if (message === '') {
       return;
     }
-    const newRawMessage = await Message.create({ room, content: message, user_id });
+    const newRawMessage = await Message.create({ chat, content: message, user_id });
     const newMessage = await newRawMessage.populate('user_id', 'username');
 
-    io.to(room).emit('new-message', newMessage);
+    io.to(chat).emit('new-message', newMessage);
   });
 
-  socket.on('join-room', async (room) => {
-    socket.join(room);
+  socket.on('join-chat', async (chat) => {
 
-    const oldMessages = await Message.find({ room }).populate('user_id', 'username');
+    socket.join(chat);
+
+    const oldMessages = await Message.find({ chat }).populate('user_id', 'username');
 
     socket.emit('old-messages', oldMessages);
 

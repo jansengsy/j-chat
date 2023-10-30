@@ -6,12 +6,12 @@ const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhos
 // Creating the socket for the client
 const socket = io(URL);
 
-export const joinRoom = (roomID) => {
-  socket.emit('join-room', roomID);
+export const joinChat = (chatID) => {
+  socket.emit('join-chat', chatID);
 }
 
-export const chatToRoom = (data) => {
-  socket.emit('chat-to-room', data);
+export const chatToChat = (data) => {
+  socket.emit('chat-to-chat', data);
 }
 
 export default socket;

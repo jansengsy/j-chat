@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import { chatToRoom } from "../../socket";
+import { chatToChat } from "../../socket";
 import { AuthContext } from "../../context/authContext";
 
-export default function MessageBar({room}) {
+export default function MessageBar({chat}) {
 
   const { user } = useContext(AuthContext);
   const [error, setError] = useState('');
@@ -21,7 +21,7 @@ export default function MessageBar({room}) {
       }, 400);
       return;
     }
-    chatToRoom({ room: room, message: inputValue, user_id: user._id });
+    chatToChat({ chat, message: inputValue, user_id: user._id });
     setInputValue('');
   };
 

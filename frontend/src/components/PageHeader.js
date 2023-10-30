@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { RoomContext } from '../context/roomContext';
+import { ChatContext } from '../context/chatContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function PageHeader({chatName}) {
+export default function PageHeader() {
 
-  const { room } = useContext(RoomContext);
+  const { chat } = useContext(ChatContext);
 
   return (
     <div className="page-header">
@@ -15,7 +15,7 @@ export default function PageHeader({chatName}) {
         <button className="header-button unread-chats"><FontAwesomeIcon icon={'fa-solid fa-filter'}/></button>
       </div>
       <div className="content-header">
-        <h1 className="header-title">{room}</h1>
+        <h1 className="header-title">{chat}</h1>
       </div>
     </div>
   );

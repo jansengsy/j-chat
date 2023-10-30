@@ -1,6 +1,6 @@
 ### j-chat
 
-J-chat is an online chat server where users are able to connect to 'rooms' and chat to each other live
+J-chat is an online chat server where users are able to connect to 'chats' and chat to each other live
 
 # Development
 

@@ -1,16 +1,16 @@
 import { useState, useEffect, useContext } from "react";
 import socket from "../socket";
-import { RoomContext } from "../context/roomContext";
+import { ChatContext } from "../context/chatContext";
 
 import MessageContainer from "../components/chat/MessageContainer";
 import MessageBar from "../components/chat/MessageBar";
-import NoRoomSelected from "../components/chat/NoRoomSelected";
+import NoChatSelected from "../components/chat/NoChatSelected";
 
 import "../styles/chat.css";
 
 export default function Chat() {
 
-  const { room } = useContext(RoomContext);
+  const { chat } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -24,12 +24,12 @@ export default function Chat() {
 
   return (
     <div className="page-container">
-      { room ?
+      { chat ?
           <div className="chat">
             <MessageContainer messages={messages} />
-            <MessageBar room={room}/>
+            <MessageBar chat={chat}/>
           </div>
-          : <NoRoomSelected />
+          : <NoChatSelected />
       }
     </div>
   );

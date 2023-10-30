@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { Outlet } from "react-router-dom";
 
-import { RoomContextProvider } from "../context/roomContext";
+import { ChatContextProvider } from "../context/chatContext";
 import { AuthContext } from "../context/authContext";
 
 import socket from '../socket';
@@ -21,13 +21,13 @@ export default function Home() {
   return (
     <>
       { user.verified === false ? <VerificationBanner /> : <></> }
-      <RoomContextProvider>
+      <ChatContextProvider>
         <PageHeader />
         <div className="home-container">
           <Nav />
           <Outlet />
         </div>
-      </RoomContextProvider>
+      </ChatContextProvider>
     </>
   )
 }
