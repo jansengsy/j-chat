@@ -7,6 +7,8 @@ import Register from '../pages/Register';
 import Error from '../pages/Error';
 import ProtectedRoute from './routes/ProtectedRoute';
 import Verify from '../pages/Verify';
+import ForgottenUsername from '../pages/ForgottenUsername';
+import ForgottenPassword from '../pages/ForgottenPassword';
 
 const Router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const Router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path: '/forgotten-username',
+    element: <ForgottenUsername />
+  },
+  {
+    path: '/forgotten-password',
+    element: <ForgottenPassword />
   },
   {
     path: '/verify',
