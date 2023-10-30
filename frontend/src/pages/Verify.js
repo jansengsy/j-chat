@@ -1,19 +1,23 @@
 import { useState, useEffect, useContext } from 'react';
 import { useSearchParams } from "react-router-dom";
+import { AuthContext } from '../context/authContext';
 import axios from 'axios';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Verify() {
 
+  const {verifyUser} = useContext(AuthContext);
+
   // eslint-disable-next-line no-unused-vars
   const [searchParams, nosetSearchParams] = useSearchParams();
   const [error, setError] = useState(false);
-  const [verified, setVerified] = useState('');
+  const [verifiedMessage, setVerifiedMessage] = useState('');
 
   const goHome = () => {
     window.location.replace(window.location.origin + '/');
   }
-
+  
   useEffect(() => {
     async function verifyEmail() {
       const token = searchParams.get('token');
@@ -27,15 +31,16 @@ export default function Verify() {
               'Content-Type': 'application/json',
           },
         });
+        verifyUser();
         setError(false);
-        setVerified(res.data);
+        setVerifiedMessage(res.data);
 
         setTimeout(() => {
           goHome();
         }, 2000);
       } catch (err) {
         setError(true);
-        setVerified('An error occured trying to verify your email. Please try again');
+        setVerifiedMessage('An error occured trying to verify your email. Please try again');
       }
     } 
 
@@ -48,7 +53,7 @@ export default function Verify() {
           <FontAwesomeIcon className='no-room-icon' icon={'fa-solid fa-triangle-exclamation'} /> : 
           <FontAwesomeIcon className='no-room-icon' icon={'fa-solid fa-square-check'} />
       }
-      <h1 className='no-room-header'>{verified}!</h1>
+      <h1 className='no-room-header'>{verifiedMessage}!</h1>
       <p className='white-text'>You will be returned the the application in a few seconds...</p>
     </div>
   );
