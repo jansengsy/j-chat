@@ -23,8 +23,8 @@ export default function useAuth() {
 
   const verifyUser = () => {
     const user = getUser();
-    user.verified = true;
-    saveUser(user);
+    const updatedUser = { ...user, verified: true };
+    saveUser(updatedUser);
   }
 
   const login = async (user) => {
