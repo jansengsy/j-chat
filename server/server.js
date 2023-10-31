@@ -57,6 +57,28 @@ app.post('/getUserID', auth, async (req, res) => {
   }
 });
 
+app.get('/getChats', async (req, res) => {
+  try {
+    const allChats = await Chat.find().populate('members', 'email username');
+    res.status(200).json(allChats);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+app.post('/createChat', auth, async (req, res) => {
+  const { chatName, type, admin, ids } = req.body;
+
+  try {
+    const newChat = await Chat.create({ name: `${chatName}`, type, owner: admin, members: ids });
+    const populatedChat = await Chat.findOne({ _id: newChat._id }).populate('owner', 'email username').populate('members', 'email username');
+    res.status(200).json(populatedChat);
+  } catch (err) {
+    console.log(err)
+  }
+  return res.status(200);
+});
+
 app.post('/resetPassword', async (req, res) => {
   const { email, password, cpassword } = req.body;
 
@@ -302,9 +324,13 @@ io.on('connection', (socket) => {
 
     socket.join(chat);
 
-    const oldMessages = await Message.find({ chat }).populate('user_id', 'username');
+    try {
+      const oldMessages = await Message.find({ chat }).populate('user_id', 'username');
+      socket.emit('old-messages', oldMessages);
+    } catch(err) {
+      console.log(err);
+    }
 
-    socket.emit('old-messages', oldMessages);
 
  });
 
