@@ -38,22 +38,19 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-app.post('/getUser', auth, async (req, res) => {
+app.post('/getUserID', auth, async (req, res) => {
 
-  const _id = req.body._id;
+  const {_id, email, username} = req.body;
 
   try {
-    const response = await User.findOne({_id});
+    const user = await User.findOne({
+      $or: [{ _id }, { email }, { username }]
+    });
 
-    // pluck needed details
-    const user = {
-      _id: response._id,
-      username: response.username,
-      email: response.email,
-      verification_token: response.verification_token,
-      verified: response.verified,
+    if (user === null) {
+      return res.status(404).send('No user with that email exists.');
     }
-    return res.status(200).json(user);
+    return res.status(200).json({id: user._id, email: user.email});
   } catch (err) {
     console.log(err)
     return res.status(500).send('Server error.');
