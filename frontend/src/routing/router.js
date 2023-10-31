@@ -9,6 +9,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import Verify from '../pages/Verify';
 import ForgottenUsername from '../pages/ForgottenUsername';
 import ForgottenPassword from '../pages/ForgottenPassword';
+import ResetPassword from '../pages/ResetPassword';
 
 const Router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const Router = createBrowserRouter([
   },
   {
     path: '/forgotten-password',
+    element: <ResetPassword />
+  },
+  {
+    path: '/reset-password',
     element: <ForgottenPassword />
   },
   {
