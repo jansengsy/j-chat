@@ -11,7 +11,7 @@ export default function ForgottenUsernameForm() {
 
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [formStatus, setFormStatus] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const [buttonText, setButtonText] = useState('Send username reminder');
 
   const handleForgottenUsername = async (e) => {
@@ -19,7 +19,7 @@ export default function ForgottenUsernameForm() {
     try {
       setEmailError('');
       setButtonText('sending...');
-      setFormStatus(true);
+      setButtonDisabled(true);
       if(!validateFields()) return;
       await axios.post('http://localhost:3000/email/forgottenUsername', {email}, {
         headers: {
@@ -28,7 +28,7 @@ export default function ForgottenUsernameForm() {
       });
       setButtonText('Email sent!');
     } catch (err) {
-      formStatus(true);
+      setButtonDisabled(false);
       setButtonText('Send username reminder')
       setEmailError(err.response.data);
     }
@@ -37,7 +37,6 @@ export default function ForgottenUsernameForm() {
   const validateFields = async () => {
     if (email === '') {
       setEmailError('Please enter your email address');
-      formStatus(true);
       setButtonText('Send username reminder');
       return false;
     }
@@ -62,7 +61,7 @@ export default function ForgottenUsernameForm() {
           </div>
           <Link className='register-link' to={'/login'}>Return to login</Link>
           <div className='form-section'>
-            <button disabled={formStatus} className='login-button'>{buttonText}</button>
+            <button disabled={buttonDisabled} className='login-button'>{buttonText}</button>
           </div>
         </div>
       </form>
