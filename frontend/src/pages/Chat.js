@@ -10,7 +10,7 @@ import '../styles/chat.css';
 
 export default function Chat() {
 
-  const { chat } = useContext(ChatContext);
+  const { currentChat } = useContext(ChatContext);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -24,10 +24,10 @@ export default function Chat() {
 
   return (
     <div className='page-container'>
-      { chat ?
+      { currentChat ?
           <div className='chat'>
             <MessageContainer messages={messages} />
-            <MessageBar chat={chat}/>
+            <MessageBar chat={Number(currentChat._id)}/>
           </div>
           : <NoChatSelected />
       }
