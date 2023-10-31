@@ -17,6 +17,7 @@ const Message = require('./models/message');
 // Email templates
 const generateRegisterEmailTemplate = require('./emailTemplates/register');
 const generateReminderTemplate = require('./emailTemplates/usernameReminder');
+const generatePasswordResetTemplate = require('./emailTemplates/resetPassword');
 
 // Middleware
 const auth = require('./middleware/auth');
@@ -59,8 +60,24 @@ app.post('/getUser', auth, async (req, res) => {
 });
 
 // Email
-app.get('/email/forgottenPassword', (req, res) => {
-  
+app.post('/email/resetPassword', async (req, res) => {
+  const { email, username } = req.body;
+  const from = 'jansen.chat.app@gmail.com';
+  const to = email;
+  const subject = 'Reset your J-Chat password';
+  try {
+    const user = await User.findOne({ email, username });
+    if (user === null) {
+      return res.status(500).send('There is no user associated with that email or username.');
+    }
+    const html = generatePasswordResetTemplate(email);
+    const data = { from, to, subject, html };
+    await send(data);
+    return res.status(200).send('Password reset email sent.');
+  } catch (err) {
+    console.log(err)
+    return res.status(500).send('Server error');
+  }
 });
 
 app.post('/email/forgottenUsername', async (req, res) => {
