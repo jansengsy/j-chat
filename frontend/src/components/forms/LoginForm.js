@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import '../../styles/login.css';
 import '../../styles/form.css';

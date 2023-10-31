@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
+import { useContext } from 'react';
+import { Navigate, useSearchParams } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext';
 
 export default function ProtectedRoute({children}) {
 

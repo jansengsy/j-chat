@@ -242,7 +242,7 @@ app.post('/login', async (req, res) => {
     const { email, password, username } = req.body;
 
     if (!((email || username) && password)) {
-      res.status(400).send("All input is required");
+      res.status(400).send('All input is required');
     }
 
     let user;
@@ -261,7 +261,7 @@ app.post('/login', async (req, res) => {
         },
         TOKEN_KEY,
         {
-          expiresIn: "2h",
+          expiresIn: '2h',
         }
       );
 
@@ -269,7 +269,7 @@ app.post('/login', async (req, res) => {
       return res.status(200).json(user);
     }
 
-    return res.status(400).send("Invalid Credentials");
+    return res.status(400).send('Invalid Credentials');
   } catch (err) {
     console.log(err);
   }

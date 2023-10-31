@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
-import { chatToChat } from "../../socket";
-import { AuthContext } from "../../context/authContext";
+import { useState, useContext } from 'react';
+import { chatToChat } from '../../socket';
+import { AuthContext } from '../../context/authContext';
 
 export default function MessageBar({chat}) {
 
@@ -15,9 +15,9 @@ export default function MessageBar({chat}) {
     setError('');
     if (inputValue === '') {
       setError('Messages can\'t be empty!');
-      document.getElementById("message-input").classList.add("shake");
+      document.getElementById('message-input').classList.add('shake');
       setTimeout(() => {
-        document.getElementById("message-input").classList.remove("shake");
+        document.getElementById('message-input').classList.remove('shake');
       }, 400);
       return;
     }
@@ -28,18 +28,18 @@ export default function MessageBar({chat}) {
   document.onkeyup = enter;
 
   return (
-    <div className="message-bar">
+    <div className='message-bar'>
       <input
-        id="message-input"
-        className="message-input"
-        type="text"
+        id='message-input'
+        className='message-input'
+        type='text'
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onFocus={() => setError('')}
         placeholder={error}
       />
       <button
-        className="message-button"
+        className='message-button'
         onClick={handleSendMessage}
       >
         Send Message

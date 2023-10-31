@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from "react";
-import socket from "../socket";
-import { ChatContext } from "../context/chatContext";
+import { useState, useEffect, useContext } from 'react';
+import socket from '../socket';
+import { ChatContext } from '../context/chatContext';
 
-import MessageContainer from "../components/chat/MessageContainer";
-import MessageBar from "../components/chat/MessageBar";
-import NoChatSelected from "../components/chat/NoChatSelected";
+import MessageContainer from '../components/chat/MessageContainer';
+import MessageBar from '../components/chat/MessageBar';
+import NoChatSelected from '../components/chat/NoChatSelected';
 
-import "../styles/chat.css";
+import '../styles/chat.css';
 
 export default function Chat() {
 
@@ -23,9 +23,9 @@ export default function Chat() {
   }, []);
 
   return (
-    <div className="page-container">
+    <div className='page-container'>
       { chat ?
-          <div className="chat">
+          <div className='chat'>
             <MessageContainer messages={messages} />
             <MessageBar chat={chat}/>
           </div>

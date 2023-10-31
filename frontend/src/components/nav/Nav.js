@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { AuthContext } from "../../context/authContext";
-import { ChatContext } from "../../context/chatContext";
-import { joinChat } from "../../socket";
+import { useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
+import { ChatContext } from '../../context/chatContext';
+import { joinChat } from '../../socket';
 
 import '../../styles/nav.css'
 
@@ -23,8 +23,8 @@ export default function Nav() {
 
   return (
     <>
-      <div className="sidenav">
-        <div className="nav-menu">
+      <div className='sidenav'>
+        <div className='nav-menu'>
           <ul>
             <li
               className={`nav-item ${ chat === 1 ? 'selected-nav-item' : ''}`}

@@ -1,14 +1,14 @@
-import { useEffect, useContext } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect, useContext } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import { ChatContextProvider } from "../context/chatContext";
-import { AuthContext } from "../context/authContext";
+import { ChatContextProvider } from '../context/chatContext';
+import { AuthContext } from '../context/authContext';
 
 import socket from '../socket';
 
-import Nav from "../components/nav/Nav";
-import VerificationBanner from "../components/VerificationBanner";
-import PageHeader from "../components/PageHeader";
+import Nav from '../components/nav/Nav';
+import VerificationBanner from '../components/VerificationBanner';
+import PageHeader from '../components/PageHeader';
 
 export default function Home() {
 
@@ -23,7 +23,7 @@ export default function Home() {
       { user.verified === false ? <VerificationBanner /> : <></> }
       <ChatContextProvider>
         <PageHeader />
-        <div className="home-container">
+        <div className='home-container'>
           <Nav />
           <Outlet />
         </div>
