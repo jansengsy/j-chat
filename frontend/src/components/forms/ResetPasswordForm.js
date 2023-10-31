@@ -1,84 +1,99 @@
 import { useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 import FormError from './FormError';
 
 export default function ResetPasswordForm() {
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [usernameError, setUsernameError] = useState('');
-  const [emailError, setEmailError] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [searchParams, nosetSearchParams] = useSearchParams();
+  const [password, setPassword] = useState('');
+  const [cpassword, setCPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [cpasswordError, setCPasswordError] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [buttonText, setButtonText] = useState('Request Password Reset');
+  const [buttonText, setButtonText] = useState('Reset Password');
 
-  const handlePasswordReset = async (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault();
     setButtonDisabled(true);
-    setEmailError('');
-    setUsernameError('');
+    setPasswordError('');
+    setCPasswordError('');
     if (!validateFields()) {
-      setButtonText('Request Password Reset');
+      setButtonText('Reset Password');
       return;
     } 
     setButtonText('Sending...');
     try {
-      await axios.post('http://localhost:3000/email/resetPassword', {email, username}, {
+      await axios.post('http://localhost:3000/resetPassword', {email: searchParams.get('email'), password, cpassword}, {
         headers: {
             'Content-Type': 'application/json',
         },
       });
-      setButtonText('Email sent!');
+      setButtonText('Password Reset!');
     } catch (err) {
       setButtonDisabled(false);
-      setButtonText('Request Password Reset')
-      setEmailError(err.response.data);
-      setUsernameError(err.response.data);
+      setButtonText('Reset Password')
+      setPasswordError(err.response.data);
+      setCPasswordError(err.response.data);
     }
   }
 
   const validateFields = () => {
 
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])(?!.*\s)[A-Za-z\d@$!%*?&]{6,}$/;
     let valid = true;
 
-    if (username === '') {
-      setUsernameError('Please enter a username');
+    if (password === '') {
+      setPasswordError('Please enter a password');
       valid = false;
     }
 
-    if (email === '') {
-      setEmailError('Please enter an email');
+    if (cpassword === '') {
+      setCPasswordError('Please confirm your password');
       valid =  false;
     }
 
+    if (password !== cpassword) {
+      valid = false;
+      setPasswordError('Passwords must match');
+      setCPasswordError('Passwords must match');
+    }
+
+    if (!passwordRegex.test(password)) {
+      valid = false;
+      setPasswordError('Invalid password. Password must contain upper and lower case characters, numbers, and special characters.');
+    }
+
+    setButtonDisabled(valid);
     return valid;
   }
 
   return (
-    <form onSubmit={handlePasswordReset}>
+    <form onSubmit={handleResetPassword}>
       <div className='login-box'>
         <div className='form-section'>
-          <label className='form-label' htmlFor='uname'>Username</label>
+          <label className='form-label' htmlFor='password'>Password</label>
           <input
-            id='uname'
-            type='text'
+            id='password'
+            type='password'
             className='form-input'
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
-          { usernameError ? <FormError error={usernameError}/> : '' }
+          { passwordError ? <FormError error={passwordError}/> : '' }
         </div>
         <div className='form-section'>
-          <label className='form-label' htmlFor='email'>Email</label>
+          <label className='form-label' htmlFor='cpassword'>Confrim Password</label>
           <input
-            id='email'
-            type='email'
+            id='cpassword'
+            type='password'
             className='form-input'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            value={cpassword}
+            onChange={e => setCPassword(e.target.value)}
           />
-          { emailError ? <FormError error={emailError}/> : '' }
+          { cpasswordError ? <FormError error={cpasswordError}/> : '' }
         </div>
         <Link className='register-link' to={'/login'}>Return to login</Link>
         <div className='form-section'>

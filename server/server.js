@@ -59,8 +59,36 @@ app.post('/getUser', auth, async (req, res) => {
   }
 });
 
+app.post('/resetPassword', async (req, res) => {
+  const { email, password, cpassword } = req.body;
+
+  if (!(email && password && cpassword)) {
+    return res.status(400).send('All input is required.');
+  }
+
+  if (password !== cpassword) {
+    return res.status(400).send('Passwords must match');
+  }
+
+  encryptedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    const filter = { email: email };
+    const update = { password: encryptedPassword };
+    let updatedUser = await User.findOneAndUpdate(filter, update, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).send('User not found');
+    }
+
+    res.status(200).send('Password reset!');
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
+
 // Email
-app.post('/email/resetPassword', async (req, res) => {
+app.post('/email/forgottenPassword', async (req, res) => {
   const { email, username } = req.body;
   const from = 'jansen.chat.app@gmail.com';
   const to = email;
