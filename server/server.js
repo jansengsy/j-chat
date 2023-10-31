@@ -13,6 +13,7 @@ const crypto = require('crypto');
 // Models
 const User = require('./models/user');
 const Message = require('./models/message');
+const Chat = require('./models/chat');
 
 // Email templates
 const generateRegisterEmailTemplate = require('./emailTemplates/register');
