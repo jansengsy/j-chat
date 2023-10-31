@@ -33,15 +33,15 @@ const generateRegisterEmailTemplate = (token, username, email) => {
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="header">Welcome to J-Chat!</div>
+        <div class='container'>
+            <div class='header'>Welcome to J-Chat!</div>
             <p>
                 Dear ${username},<br/><br/>
                 We are excited to have you on board and look forward to seeing you on J-Chat. Feel free to connect with your friends and share your experiences. If you have any questions or need assistance, please don't hesitate to reach out to us. <br/><br/>
                 Regards,<br/>
                 The J-Chat Team
             </p>
-            <a class="button" href="http://localhost:3001/verify?token=${token}&email=${email}">Verify my email!</a>
+            <a class='button' href='http://localhost:3001/verify?token=${token}&email=${email}'>Verify my email!</a>
         </div>
     </body>
     </html>

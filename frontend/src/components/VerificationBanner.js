@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
-import axios from "axios";
+import { useState, useContext } from 'react';
+import axios from 'axios';
 
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from '../context/authContext';
 
 export default function VerificationBanner() {
 
@@ -30,12 +30,12 @@ export default function VerificationBanner() {
   };
 
   return (
-    <div className="banner-container">
+    <div className='banner-container'>
       <div className={ emailSent ? 'banner-success' : 'banner' }>
         { emailSent ? 
             <p>Email has been sent! Please check your inbox.</p> : 
             <p>Please verify your Email. Need another email link?
-              <button className="banner-link" onClick={sendVerificationEmail}>Click here!</button>
+              <button className='banner-link' onClick={sendVerificationEmail}>Click here!</button>
             </p> 
         }
       </div>

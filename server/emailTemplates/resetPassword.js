@@ -24,12 +24,12 @@ const generatePasswordResetTemplate = (email) => {
         </style>
     </head>
     <body>
-        <div class="container">
+        <div class='container'>
             <p>Hey there!</p>
             <p>Looks like you need to reset your password. No worries, we've got you covered! Click the link below to set up a shiny new password and get back to doing your thing.</p>
             <p>Let us know if you need any help along the way.</p>
             <p>Stay awesome!</p>
-            <a class="button" href="http://localhost:3001/reset-password?email=${email}">Reset my password!</a>
+            <a class='button' href='http://localhost:3001/reset-password?email=${email}'>Reset my password!</a>
         </div>
     </body>
     </html>
