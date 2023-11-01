@@ -50,7 +50,7 @@ app.post('/getUserID', auth, async (req, res) => {
     if (user === null) {
       return res.status(404).send('No user with that email exists.');
     }
-    return res.status(200).json({id: user._id, email: user.email});
+    return res.status(200).json({id: user._id, email: user.email, username: user.username});
   } catch (err) {
     console.log(err)
     return res.status(500).send('Server error.');
@@ -58,9 +58,12 @@ app.post('/getUserID', auth, async (req, res) => {
 });
 
 app.get('/getChats', async (req, res) => {
+
+  const { userId } = req.query;
+
   try {
-    const allChats = await Chat.find().populate('members', 'email username');
-    res.status(200).json(allChats);
+    const userChats = await Chat.find({members: userId}).populate('members', 'email username');
+    res.status(200).json(userChats);
   } catch (error) {
     res.status(500).json({ message: 'Server Error' });
   }
@@ -68,6 +71,8 @@ app.get('/getChats', async (req, res) => {
 
 app.post('/createChat', auth, async (req, res) => {
   const { chatName, type, admin, ids } = req.body;
+
+  ids.push(admin);
 
   try {
     const newChat = await Chat.create({ name: `${chatName}`, type, owner: admin, members: ids });

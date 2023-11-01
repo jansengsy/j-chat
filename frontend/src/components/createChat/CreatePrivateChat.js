@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/authContext";
 
 import axios from "axios";
 
-export default function CreatePrivateChat({chatData, setChatData}) {
+export default function CreatePrivateChat({createChat, setChatData}) {
 
   const inputRef = useRef(null);
 
@@ -28,10 +28,10 @@ export default function CreatePrivateChat({chatData, setChatData}) {
             'Authorization': `Bearer ${token}`,
           }
         });
-        setChatData(prevData => ({
-          ...prevData,
-          ids: [...chatData.ids, res.data.id],
-        }));
+        createChat({
+          chatName: `Chat with ${res.data.username}`,
+          ids: [res.data.id],
+        });
         setEmail('');
       } catch (err) {
         setEmail('');
@@ -56,6 +56,7 @@ export default function CreatePrivateChat({chatData, setChatData}) {
   return (
     <div className="popout-content">
       <div className="stage-content">
+        <p>{  }</p>
         <input
           id='email-input'
           ref={inputRef}
