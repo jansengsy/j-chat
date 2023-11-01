@@ -148,15 +148,27 @@ ul {
 
 .popout-header {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   font-size: 14px;
   font-weight: 600;
   padding: 5px;
   color: #aad28c;
 }
 
+.popout-header-title {
+  display: flex;
+  flex: 1;
+  margin: 0 20px;
+  justify-content: center;
+  align-items: center;
+}
+
 .popout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: small;
+  flex: 0 0 45px; 
   height: 10px;
   border: none;
   padding: 0;
