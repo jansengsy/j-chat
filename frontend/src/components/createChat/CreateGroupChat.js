@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function CreateGroupChat({stage, chatData, setChatData}) {
 
   const inputRef = useRef(null);
+  const nameRef = useRef(null);
 
   const {token} = useContext(AuthContext);
 
@@ -18,8 +19,10 @@ export default function CreateGroupChat({stage, chatData, setChatData}) {
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
+    } else if (nameRef.current) {
+      nameRef.current.focus();
     }
-  }, []);
+  }, [stage]);
 
   const addEmail = async (newEmail) => {
     const regex = /^(?!\s*$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/g
@@ -86,11 +89,12 @@ export default function CreateGroupChat({stage, chatData, setChatData}) {
       { stage === 1 &&
         <div>
           <input
-            ref={inputRef}
+            ref={nameRef}
             id='name-input'
             className='popout-input'
             type='text'
             value={chatData.chatName}
+            placeholder={ 'Chat name'}
             onChange={e => setChatData(prevData => ({
               ...prevData,
               chatName: e.target.value,
