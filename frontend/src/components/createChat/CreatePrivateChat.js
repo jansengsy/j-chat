@@ -17,12 +17,12 @@ export default function CreatePrivateChat({chatData, setChatData}) {
     }
   }, []);
 
-  const addEmail = async (newEmail) => {
+  const addEmail = async () => {
     const regex = /^(?!\s*$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/g
 
     if (regex.test(email)) {
       try {
-        const res = await axios.post('http://localhost:3000/getUserID', {email: newEmail}, {
+        const res = await axios.post('http://localhost:3000/getUserID', {email}, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
