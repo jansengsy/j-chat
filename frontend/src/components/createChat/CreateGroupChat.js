@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/authContext";
 
 import axios from "axios";
@@ -14,6 +14,12 @@ export default function CreateGroupChat({stage, chatData, setChatData}) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const addEmail = async (newEmail) => {
     const regex = /^(?!\s*$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/g
