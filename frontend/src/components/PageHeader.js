@@ -2,7 +2,8 @@ import { useState, useContext } from 'react';
 import { ChatContext } from '../context/chatContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import CreateChatPopout from './CreateChatPopout';
+import CreateChatPopout from './createChat/CreateChatPopout';
+import NewChatPopout from './createChat/NewChatPopout';
 
 export default function PageHeader() {
 
@@ -18,7 +19,8 @@ export default function PageHeader() {
       <div className='nav-header'>
         <h1 className='header-title'>Chats</h1>
         <button className='header-button new-chat' onClick={togglePopout}><FontAwesomeIcon icon={'fa-solid fa-square-plus'}/></button>
-        {showPopout && <CreateChatPopout togglePopout={togglePopout}/>}
+        {/*showPopout && <CreateChatPopout togglePopout={togglePopout}/>*/}
+        {showPopout && <NewChatPopout togglePopout={togglePopout}/>}
         <button className='header-button unread-chats'><FontAwesomeIcon icon={'fa-solid fa-filter'}/></button>
       </div>
       <div className='content-header'>
