@@ -4,8 +4,7 @@ import { ChatContext } from '../../context/chatContext';
 import { joinChat } from '../../socket';
 
 import axios from 'axios';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NavChat from './NavChat';
 
 import '../../styles/nav.css'
 
@@ -33,7 +32,7 @@ export default function Nav() {
     }
 
     getChats();
-  }, []);
+  }, [setChats, token, user._id]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -48,7 +47,7 @@ export default function Nav() {
 
   const handleDeleteChat = async (chatToDelete) => {
 
-    const newChats = chats.filter((chat) => chat._id != chatToDelete);
+    const newChats = chats.filter((chat) => chat._id !== chatToDelete);
     setChats(newChats);
 
     try {
@@ -58,7 +57,7 @@ export default function Nav() {
           'Authorization': `Bearer ${token}`,
         }
       });
-      
+
       if (currentChat._id === chatToDelete) {
         setCurrentChat(null);
       }
@@ -73,14 +72,13 @@ export default function Nav() {
         <div className='nav-menu'>
           <ul>
             {loading === false && chats.map((chat) => (
-              <li
+              <NavChat
                 key={chat._id}
-                className={`nav-item ${ currentChat === chat._id ? 'selected-nav-item' : ''}`}
-                onClick={() => handleJoinChat(chat)}
-              >
-                {chat.name}
-                <FontAwesomeIcon icon={'fa-solid fa-trash'} onClick={() => handleDeleteChat(chat._id)}/>
-              </li>
+                currentChat={currentChat}
+                chat={chat}
+                handleDeleteChat={handleDeleteChat}
+                handleJoinChat={handleJoinChat}
+              />
             ))}
           </ul>
         </div>
