@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { AuthContext } from "../context/authContext";
-import { ChatContext } from "../context/chatContext";
+import { AuthContext } from "../../context/authContext";
+import { ChatContext } from "../../context/chatContext";
 
 import axios from "axios";
 
@@ -13,8 +13,10 @@ export default function CreateChatPopout({togglePopout}) {
 
   const inputRef = useRef(null);
 
+  const [chatType, setChatType] = useState('private');
   const [stage, setStage] = useState(1);
   const [chatName, setChatName] = useState('');
+  const [chatNameError, setChatNameError] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [emails, setEmails] = useState([]);
