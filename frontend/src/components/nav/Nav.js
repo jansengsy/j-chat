@@ -18,7 +18,7 @@ export default function Nav() {
   useEffect(() => {
     async function getChats() {
       try {
-        const res = await axios.get('http://localhost:3000/getChats', {id: user._id}, {
+        const res = await axios.get(`http://localhost:3000/getChats?userId=${user._id}`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
