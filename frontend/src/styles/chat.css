@@ -24,6 +24,8 @@
   height: 25px;
   padding: 5px;
   flex: 1;
+  border: none;
+  outline: none;
 }
 
 .message-input::placeholder {

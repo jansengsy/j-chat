@@ -14,7 +14,8 @@ export default function MessageBar({chat}) {
     if (messageRef.current) {
       messageRef.current.focus();
     }
-  }, []);
+    setInputValue('');
+  }, [chat]);
 
   // 13 = enter key
   const enter = (e) => { if(e.which === 13) handleSendMessage() };
