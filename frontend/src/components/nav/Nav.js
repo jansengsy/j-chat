@@ -40,7 +40,7 @@ export default function Nav() {
   }
 
   const handleJoinChat = async (chat) => {
-    joinChat(Number(chat._id));
+    joinChat(chat._id);
     setCurrentChat(chat);
   }
 

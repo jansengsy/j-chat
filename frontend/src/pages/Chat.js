@@ -27,7 +27,7 @@ export default function Chat() {
       { currentChat ?
           <div className='chat'>
             <MessageContainer messages={messages} />
-            <MessageBar chat={Number(currentChat._id)}/>
+            <MessageBar chat={currentChat._id}/>
           </div>
           : <NoChatSelected />
       }
