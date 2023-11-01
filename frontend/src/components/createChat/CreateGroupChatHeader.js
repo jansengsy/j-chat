@@ -1,4 +1,5 @@
 export default function CreateGroupChatHeader({stage, setStage, cancelGroup, createChat}) {
+
   return (
     <>
       <button

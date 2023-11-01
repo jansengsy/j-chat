@@ -30,15 +30,14 @@ export default function NewChatPopout({togglePopout}) {
     setStage(null);
   }
 
-  const createChat = async (privateChatData = null) => {
-
+  const createChat = async (data) => {
     try {
       const res = await axios.post('http://localhost:3000/createChat',
         {
-          chatName: privateChatData ? privateChatData.chatName : chatData.chatName,
+          chatName: data.chatName,
           type: chatType,
           admin: user._id,
-          ids : privateChatData ? privateChatData.ids : chatData.ids
+          ids: data.ids
         },
         {
           headers: {
@@ -54,11 +53,19 @@ export default function NewChatPopout({togglePopout}) {
     }
   }
 
+  const createGroupChat = async () => {
+    createChat(chatData);
+  }
+
+  const createPrivateChat = async (privateChatData) => {
+    createChat(privateChatData);
+  }
+
   return (
     <div className="popout-container">
-      <NewChatHeader type={chatType} stage={stage} setStage={setStage} cancelGroup={handlePrivateChat} createChat={createChat}/>
+      <NewChatHeader type={chatType} stage={stage} setStage={setStage} cancelGroup={handlePrivateChat} createChat={createGroupChat}/>
       { chatType === 'private' ?
-          <CreatePrivateChat createChat={createChat} chatData={chatData} setChatData={setChatData} /> :
+          <CreatePrivateChat createChat={createPrivateChat} chatData={chatData} setChatData={setChatData} /> :
           <CreateGroupChat stage={stage} chatData={chatData} setChatData={setChatData}/>
       }
       {
@@ -68,7 +75,6 @@ export default function NewChatPopout({togglePopout}) {
           </div>
         )
       }
-      
     </div>
   )
 }

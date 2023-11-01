@@ -72,7 +72,7 @@ app.get('/getChats', async (req, res) => {
 app.post('/createChat', auth, async (req, res) => {
   const { chatName, type, admin, ids } = req.body;
 
-  ids.push(admin);
+  ids?.push(admin);
 
   try {
     const newChat = await Chat.create({ name: `${chatName}`, type, owner: admin, members: ids });
