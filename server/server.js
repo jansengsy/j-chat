@@ -79,6 +79,24 @@ app.post('/createChat', auth, async (req, res) => {
   return res.status(200);
 });
 
+app.post('/deleteChat', auth, async (req, res) => {
+  let { _id } = req.body;
+
+  try {
+    await Message.deleteMany({ chat: _id });
+    const chat = await Chat.findByIdAndDelete({_id});
+    if (chat === null) {
+      return res.status(500).send('Chat not found');
+    }
+    return res.status(200).send('Chat and all associated messages have been deleted.');
+  } catch (err) {
+    console.log(err);
+  }
+
+  console.log('Delete chat:');
+  console.log(_id);
+});
+
 app.post('/resetPassword', async (req, res) => {
   const { email, password, cpassword } = req.body;
 
@@ -330,8 +348,6 @@ io.on('connection', (socket) => {
     } catch(err) {
       console.log(err);
     }
-
-
  });
 
   socket.on('disconnect', () => {

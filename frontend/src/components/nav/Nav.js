@@ -5,6 +5,8 @@ import { joinChat } from '../../socket';
 
 import axios from 'axios';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import '../../styles/nav.css'
 
 export default function Nav() {
@@ -39,9 +41,30 @@ export default function Nav() {
     deleteToken('token');
   }
 
-  const handleJoinChat = async (chat) => {
+  const handleJoinChat = (chat) => {
     joinChat(chat._id);
     setCurrentChat(chat);
+  }
+
+  const handleDeleteChat = async (chatToDelete) => {
+
+    const newChats = chats.filter((chat) => chat._id != chatToDelete);
+    setChats(newChats);
+
+    try {
+      await axios.post('http://localhost:3000/deleteChat', {_id: chatToDelete}, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        }
+      });
+      
+      if (currentChat._id === chatToDelete) {
+        setCurrentChat(null);
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -56,6 +79,7 @@ export default function Nav() {
                 onClick={() => handleJoinChat(chat)}
               >
                 {chat.name}
+                <FontAwesomeIcon icon={'fa-solid fa-trash'} onClick={() => handleDeleteChat(chat._id)}/>
               </li>
             ))}
           </ul>
