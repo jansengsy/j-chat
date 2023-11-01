@@ -57,10 +57,17 @@ export default function NewChatPopout({togglePopout}) {
     <div className="popout-container">
       <NewChatHeader type={chatType} stage={stage} setStage={setStage} cancelGroup={handlePrivateChat} createChat={createChat}/>
       { chatType === 'private' ?
-          <CreatePrivateChat stage={stage} createChat={createChat}/> :
+          <CreatePrivateChat chatData={chatData} setChatData={setChatData} /> :
           <CreateGroupChat stage={stage} chatData={chatData} setChatData={setChatData}/>
       }
-      <button onClick={handleGroupChat}>Create Group</button>
+      {
+        chatType === 'private' && (
+          <div className='creat-group-chat-button-container'>
+            <button className='create-group-chat-button' onClick={handleGroupChat}>Create Group Chat</button>
+          </div>
+        )
+      }
+      
     </div>
   )
 }
