@@ -1,17 +1,25 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { chatToChat } from '../../socket';
 import { AuthContext } from '../../context/authContext';
 
 export default function MessageBar({chat}) {
 
+  const messageRef = useRef(null);
+
   const { user } = useContext(AuthContext);
   const [error, setError] = useState('');
   const [inputValue, setInputValue] = useState('');
 
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.focus();
+    }
+  }, []);
+
   // 13 = enter key
   const enter = (e) => { if(e.which === 13) handleSendMessage() };
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = () => {
     setError('');
     if (inputValue === '') {
       setError('Messages can\'t be empty!');
@@ -31,6 +39,7 @@ export default function MessageBar({chat}) {
     <div className='message-bar'>
       <input
         id='message-input'
+        ref={messageRef}
         className='message-input'
         type='text'
         value={inputValue}

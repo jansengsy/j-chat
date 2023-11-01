@@ -31,6 +31,11 @@
   opacity: 1;
 }
 
+.message-input:focus {
+  border: none;
+  outline: none;
+}
+
 
 .shake {
   animation: shake 0.4s;
