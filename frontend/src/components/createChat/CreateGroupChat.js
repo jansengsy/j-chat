@@ -59,7 +59,7 @@ export default function CreateGroupChat({stage, chatData, setChatData}) {
     document.getElementById(id).classList.remove('popout-error');
   }
 
-  const enter = (e) => { console.log(e.target) ;if(e.which === 13) addEmail(email) };
+  const enter = (e) => { if(e.which === 13) addEmail(email) };
   document.onkeyup = enter;
 
   return (
