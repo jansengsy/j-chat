@@ -33,6 +33,7 @@ export default function CreatePrivateChat({createChat, setChatData}) {
           ids: [res.data.id],
         });
         setEmail('');
+        clearPlaceholder('email-input')
       } catch (err) {
         setEmail('');
         document.getElementById('email-input').classList.add('popout-error');

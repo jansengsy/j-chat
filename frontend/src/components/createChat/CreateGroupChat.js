@@ -41,6 +41,7 @@ export default function CreateGroupChat({stage, chatData, setChatData}) {
           ids: [...chatData.ids, res.data.id],
         }));
         setEmail('');
+        clearPlaceholder('email-input')
       } catch (err) {
         setEmail('');
         document.getElementById('email-input').classList.add('popout-error');
@@ -57,6 +58,9 @@ export default function CreateGroupChat({stage, chatData, setChatData}) {
     setEmailError('');
     document.getElementById(id).classList.remove('popout-error');
   }
+
+  const enter = (e) => { console.log(e.target) ;if(e.which === 13) addEmail(email) };
+  document.onkeyup = enter;
 
   return (
     <div className="popout-content">
