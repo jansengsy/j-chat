@@ -11,17 +11,17 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
 // Models
-const User = require('./models/user');
-const Message = require('./models/message');
-const Chat = require('./models/chat');
+const User = require('./app/models/user');
+const Message = require('./app/models/message');
+const Chat = require('./app/models/chat');
 
 // Email templates
-const generateRegisterEmailTemplate = require('./emailTemplates/register');
-const generateReminderTemplate = require('./emailTemplates/usernameReminder');
-const generatePasswordResetTemplate = require('./emailTemplates/resetPassword');
+const generateRegisterEmailTemplate = require('./app/emailTemplates/register');
+const generateReminderTemplate = require('./app/emailTemplates/usernameReminder');
+const generatePasswordResetTemplate = require('./app/emailTemplates/resetPassword');
 
 // Middleware
-const auth = require('./middleware/auth');
+const auth = require('./app/middleware/auth');
 
 // Environment variables
 const { PORT, TOKEN_KEY } = process.env;
