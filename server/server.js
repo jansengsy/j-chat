@@ -10,19 +10,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-// Models
-const User = require('./app/models/user');
-const Message = require('./app/models/message');
-const Chat = require('./app/models/chat');
-
-// Email templates
-const generateRegisterEmailTemplate = require('./app/emailTemplates/register');
-const generateReminderTemplate = require('./app/emailTemplates/usernameReminder');
-const generatePasswordResetTemplate = require('./app/emailTemplates/resetPassword');
-
-// Middleware
-const auth = require('./app/middleware/auth');
-
 // Environment variables
 const { PORT, TOKEN_KEY } = process.env;
 
@@ -37,6 +24,23 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
+
+// Routes
+const userRoutes = require('./app/routes/userRoutes');
+app.use('/api/user', userRoutes);
+
+// Models
+const User = require('./app/models/user');
+const Message = require('./app/models/message');
+const Chat = require('./app/models/chat');
+
+// Email templates
+const generateRegisterEmailTemplate = require('./app/emailTemplates/register');
+const generateReminderTemplate = require('./app/emailTemplates/usernameReminder');
+const generatePasswordResetTemplate = require('./app/emailTemplates/resetPassword');
+
+// Middleware
+const auth = require('./app/middleware/auth');
 
 app.post('/getUserID', auth, async (req, res) => {
 
