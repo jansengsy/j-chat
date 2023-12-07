@@ -41,7 +41,7 @@ export default function CreateChatPopout({togglePopout}) {
 
     if (regex.test(newEmail)) {
       try {
-        const res = await axios.post('http://localhost:3000/getUserID', {email: newEmail}, {
+        const res = await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/getUserID', {email: newEmail}, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -64,7 +64,7 @@ export default function CreateChatPopout({togglePopout}) {
 
   const createChat = async () => {
     try {
-      const res = await axios.post('http://localhost:3000/createChat', {chatName, type: 'private', admin: user._id, ids}, {
+      const res = await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/createChat', {chatName, type: 'private', admin: user._id, ids}, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,

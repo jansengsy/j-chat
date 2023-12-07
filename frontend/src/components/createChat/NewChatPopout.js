@@ -32,7 +32,7 @@ export default function NewChatPopout({togglePopout}) {
 
   const createChat = async (data) => {
     try {
-      const res = await axios.post('http://localhost:3000/createChat',
+      const res = await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/createChat',
         {
           chatName: data.chatName,
           type: chatType,

@@ -22,7 +22,7 @@ export default function CreatePrivateChat({createChat, setChatData}) {
 
     if (regex.test(email)) {
       try {
-        const res = await axios.post('http://localhost:3000/getUserID', {email}, {
+        const res = await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/getUserID', {email}, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,

@@ -18,7 +18,7 @@ export default function Nav() {
   useEffect(() => {
     async function getChats() {
       try {
-        const res = await axios.get(`http://localhost:3000/getChats?userId=${user._id}`, {
+        const res = await axios.get(`https://vast-badlands-58061-2679a94a959f.herokuapp.com/getChats?userId=${user._id}`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
@@ -51,7 +51,7 @@ export default function Nav() {
     setChats(newChats);
 
     try {
-      await axios.post('http://localhost:3000/deleteChat', {_id: chatToDelete}, {
+      await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/deleteChat', {_id: chatToDelete}, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,

@@ -26,7 +26,7 @@ export default function Verify() {
       const verification_token = searchParams.get('token');
       const email = searchParams.get('email');
 
-      const url = `http://localhost:3000/email/verify?token=${verification_token}&email=${email}`;
+      const url = `https://vast-badlands-58061-2679a94a959f.herokuapp.com/email/verify?token=${verification_token}&email=${email}`;
 
       try {
         const res = await axios.get(url, {

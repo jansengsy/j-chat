@@ -29,7 +29,7 @@ export default function CreateGroupChat({stage, chatData, setChatData}) {
 
     if (regex.test(newEmail)) {
       try {
-        const res = await axios.post('http://localhost:3000/api/user/getUser', {email: newEmail}, {
+        const res = await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/api/user/getUser', {email: newEmail}, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,

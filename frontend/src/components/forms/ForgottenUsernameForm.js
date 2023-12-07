@@ -21,7 +21,7 @@ export default function ForgottenUsernameForm() {
       setButtonText('sending...');
       setButtonDisabled(true);
       if(!validateFields()) return;
-      await axios.post('http://localhost:3000/email/forgottenUsername', {email}, {
+      await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/email/forgottenUsername', {email}, {
         headers: {
             'Content-Type': 'application/json',
         },

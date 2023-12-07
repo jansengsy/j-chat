@@ -26,7 +26,7 @@ export default function ResetPasswordForm() {
     } 
     setButtonText('Sending...');
     try {
-      await axios.post('http://localhost:3000/resetPassword', {email: searchParams.get('email'), password, cpassword}, {
+      await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/resetPassword', {email: searchParams.get('email'), password, cpassword}, {
         headers: {
             'Content-Type': 'application/json',
         },

@@ -10,7 +10,7 @@ export default function VerificationBanner() {
 
   const sendVerificationEmail = async () => {
     try {
-      await axios.post('http://localhost:3000/email/sendVerificationEmail',
+      await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/email/sendVerificationEmail',
         {
           verification_token: user.verification_token,
           username: user.username,

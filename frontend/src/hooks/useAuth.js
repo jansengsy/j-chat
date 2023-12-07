@@ -28,7 +28,7 @@ export default function useAuth() {
   }
 
   const login = async (user) => {
-    const url = 'http://localhost:3000/login';
+    const url = 'https://vast-badlands-58061-2679a94a959f.herokuapp.com/login';
 
     const res = await axios.post(url, user, {
       headers: {
@@ -49,7 +49,7 @@ export default function useAuth() {
   }
 
   const register = async (user) => {
-    const url = 'http://localhost:3000/register';
+    const url = 'https://vast-badlands-58061-2679a94a959f.herokuapp.com/register';
     
     const res = await axios.post(url, user, {
       headers: {
@@ -66,7 +66,7 @@ export default function useAuth() {
       verified,
     });
 
-    const emailUrl = 'http://localhost:3000/email/register';
+    const emailUrl = 'https://vast-badlands-58061-2679a94a959f.herokuapp.com/email/register';
 
     await axios.post(emailUrl, { verification_token, username, email}, {
       headers: {

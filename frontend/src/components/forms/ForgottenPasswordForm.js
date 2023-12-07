@@ -24,7 +24,7 @@ export default function ForgottenPasswordForm() {
     } 
     setButtonText('Sending...');
     try {
-      await axios.post('http://localhost:3000/email/forgottenPassword', {email, username}, {
+      await axios.post('https://vast-badlands-58061-2679a94a959f.herokuapp.com/email/forgottenPassword', {email, username}, {
         headers: {
             'Content-Type': 'application/json',
         },
